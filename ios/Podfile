@@ -1,0 +1,11 @@
+source 'https://github.com/CocoaPods/Specs.git'
+inhibit_all_warnings!
+platform:ios,'10.0'
+
+target 'Noder' do
+    # Reveal
+    pod 'Reveal-SDK', :configurations => ['Debug']
+    pod 'HTMLKit'
+    pod 'AsyncDisplayKit'
+    pod 'libextobjc'
+end
