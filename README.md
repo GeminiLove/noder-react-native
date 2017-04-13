@@ -1,6 +1,6 @@
 # noder-react-native
 
-这是一个 [cnodejs](https://cnodejs.org/) 的客户端，只支持 iOS 平台。
+这是一个 [cnodejs](https://cnodejs.org/) 的客户端，只支持 iOS 平台，目前还在完善中。
 
 
 ## Install
@@ -19,4 +19,6 @@
 
 ### 设计
 
-部分设计照搬了锤子论坛安卓客户端，项目中包含了设计的源文件，请用 Sketch 43.0 以上版本打开。
+部分设计照搬了锤子论坛安卓客户端，项目中包含了设计的源文件，请用 Sketch 43.0 以上版本打开根目录的 Noder 文件。
+
+![image](./iPhone 7@2x.png)
