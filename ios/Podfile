@@ -5,7 +5,7 @@ platform:ios,'10.0'
 target 'Noder' do
     # Reveal
     pod 'Reveal-SDK', :configurations => ['Debug']
-    pod 'HTMLKit'
-    pod 'AsyncDisplayKit'
+    pod 'HTMLKit'                  #https://github.com/iabudiab/HTMLKit
+    pod 'AsyncDisplayKit'          #https://github.com/facebook/AsyncDisplayKit
     pod 'libextobjc'
 end
