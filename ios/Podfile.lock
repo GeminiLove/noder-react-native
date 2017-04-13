@@ -6,7 +6,7 @@ PODS:
     - AsyncDisplayKit/Core
     - PINRemoteImage/iOS (= 3.0.0-beta.8)
     - PINRemoteImage/PINCache
-  - HTMLKit (2.0.3)
+  - HTMLKit (2.0.4)
   - libextobjc (0.4.1):
     - libextobjc/EXTADT (= 0.4.1)
     - libextobjc/EXTConcreteProtocol (= 0.4.1)
@@ -56,7 +56,7 @@ PODS:
   - PINRemoteImage/PINCache (3.0.0-beta.8):
     - PINCache (= 3.0.1-beta.4)
     - PINRemoteImage/Core
-  - Reveal-SDK (7)
+  - Reveal-SDK (8)
 
 DEPENDENCIES:
   - AsyncDisplayKit
@@ -66,12 +66,12 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AsyncDisplayKit: 1585f6cd0531ae9b30476f5912f577b73ebcb0e4
-  HTMLKit: b340392eabf30dac62559bb7a50c226488415253
+  HTMLKit: f917133c64270a7f9e82697a9ea8bfb4e69bcc67
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
   PINCache: a89c8f609232afac77128557bd12c861844423d7
   PINOperation: ac23db44796d4a564ecf9b5ea7163510f579b71d
   PINRemoteImage: c4f9f16932840c597f32e69dd288e10e111a1929
-  Reveal-SDK: 564657bc66c93d2718b1c0121cdebe99d354ddab
+  Reveal-SDK: 43be4e662864e937960d0d04d005135e29c4e53b
 
 PODFILE CHECKSUM: 2fedeb1495076c6c24d813b072e1e83e560ccd03
 

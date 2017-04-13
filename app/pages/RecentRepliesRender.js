@@ -7,21 +7,25 @@ import {
   StyleSheet,
   TouchableHighlight,
   TouchableOpacity,
-  requireNativeComponent,
+  Dimensions
 } from 'react-native';
 
-import DetailHeader from '../component/DetailHeader'
 import * as Colors from '../other/Colors'
 import Api from '../util/Api'
 import moment from 'moment'
-import HTMLView from 'react-native-htmlview'
 
-export default class DetailRender extends Component {
+const WindowWidth = Dimensions.get('window').width
+
+export default class RecentRepliesRender extends Component {
   constructor(props) {
     super(props);
     this.state = {
       dataSource: [],
   	}
+  }
+  static navigatorStyle = {
+    navBarBackgroundColor: 'white',
+    tabBarHidden: true,
   }
   componentDidMount(){
     this.setState({
@@ -36,6 +40,7 @@ export default class DetailRender extends Component {
             data={this.state.dataSource}
             renderItem={({item, index}) => this.renderRow(item, index)}
             keyExtractor={item => item.id}
+            ItemSeparatorComponent={() => this.renderSeparator()}
             style={styles.listView}
           />
         )
@@ -52,19 +57,10 @@ export default class DetailRender extends Component {
     return(
       <View style={styles.cellContent}>
         <Image source={{uri: item.author.avatar_url}} style={styles.avatar}/>
-        <View style={styles.cellOtherView}>
-          <View style={styles.nameView}>
-            <Text style={styles.nameText}>{item.author.loginname}</Text>
-            <Text style={styles.indexText}>{row + '楼'}</Text>
-          </View>
-          <HTMLView
-            value={item.content}
-            style={styles.htmlView}
-            stylesheet={htmlStyles}
-          />
-          <Text style={styles.relativeText}>{this._relative(item)}</Text>
+        <View style={styles.textContent}>
+          <Text style={styles.title} numberOfLines={1}>{item.title}</Text>
+          <Text style={styles.create}>{this._relative(item)}</Text>
         </View>
-        <View style={styles.separator}></View>
       </View>
     )
   }
@@ -79,70 +75,48 @@ export default class DetailRender extends Component {
   }
 }
 
-const htmlStyles = {
-  a: {
-    fontSize: 15,
-    color: Colors.blueColor,
-  },
-  p: {
-    fontSize: 15,
-    color: Colors.blackColor,
-    lineHeight: 20
-  }
-};
 
 const styles = {
   listView: {
     flex: 1,
     backgroundColor: 'white'
   },
-  separator: {
-    height: StyleSheet.hairlineWidth,
-    backgroundColor: Colors.separatorColor,
-    position: 'absolute',
-    left: 16,
-    right: 16,
-    bottom: 0,
-  },
-  htmlView: {
-    flex: 1,
-    marginBottom: -40
-  },
   cellContent: {
     flex: 1,
+    height: 74,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     padding: 16
   },
   avatar: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    marginRight: 16
+    width: 50,
+    height: 50,
+    borderRadius: 26,
+    marginRight: 16,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: Colors.borderColor,
+    backgroundColor: Colors.placeholderColor
   },
-  cellOtherView: {
-    flex: 1,
+  textContent: {
     flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
-  },
-  nameView: {
-    flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 8,
+    alignItems: 'flex-start',
+    height: 50
   },
-  nameText: {
-    fontSize: 12,
-    color: Colors.grayColor,
+  title: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: Colors.blackColor,
+    width: WindowWidth - 50 - 16 - 16 - 16
   },
-  indexText: {
-    fontSize: 12,
+  create: {
+    fontSize: 10,
+    fontWeight: '200',
     color: Colors.blackColor,
   },
-  relativeText: {
-    fontSize: 10,
-    color: Colors.grayColor
-  }
+  separator: {
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: Colors.separatorColor,
+  },
 }

@@ -138,17 +138,17 @@ const styles = {
     width: 52,
     height: 52,
     borderRadius: 26,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: Colors.borderColor,
     backgroundColor: Colors.placeholderColor
   },
   topContent: {
-    // flex: 1,
     marginTop: 2,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
   bottomContent: {
-    // flex: 1,
     marginBottom: 2,
     flexDirection: 'row',
     justifyContent: 'space-between',

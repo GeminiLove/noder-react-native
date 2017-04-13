@@ -25,43 +25,15 @@ export default class HomeRender extends Component {
 
   constructor(props) {
     super(props);
-    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     this.state = {
 
     };
   }
 
-  onNavigatorEvent(event) {
-
-  }
-
-  componentDidMount(){
-    // fetch(Api.topics)
-    //   .then((response) => response.json())
-    //   .then((responseData) => {
-    //     if (responseData) {
-    //       this.setState({
-    //         dataSource: this.state.dataSource.cloneWithRows(responseData.data),
-    //       });
-    //     }
-    //   })
-    // .done();
-
-    // this.props.navigator.push({
-    //   screen: 'Noder.DetailRender',
-    //   title: '帖子详情'
-    // });
-    console.log(this.props.navigator.push);
-  }
 
   render() {
     return (
-      // <ListView
-      //   dataSource={this.state.dataSource}
-      //   renderRow={this.renderRow.bind(this)}
-      //   renderSeparator={this.renderSeparator.bind(this)}
-      //   style={styles.listView}
-      // />
+
      <ScrollableTabView
         style={styles.scrollableTabView}
         tabBarUnderlineStyle={styles.tabBarUnderline}
@@ -76,23 +48,7 @@ export default class HomeRender extends Component {
     )
   }
 
-  // renderRow(item, sectionID, rowID){
-  //   return(
-  //     <TouchableHighlight
-  //       style={styles.cell}
-  //       onPress={() => console.log(13231)}
-  //       >
-  //       <View>
-  //
-  //       </View>
-  //     </TouchableHighlight>
-  //   )
-  // }
-  // renderSeparator(sectionID, rowID, adjacentRowHighlighted){
-  //   return(
-  //     <View key={`{sectionID}-${rowID}`} style={styles.separator}/>
-  //   )
-  // }
+
 }
 
 const styles = {

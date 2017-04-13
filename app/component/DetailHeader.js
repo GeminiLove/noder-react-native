@@ -77,6 +77,8 @@ const styles = {
     width: 52,
     height: 52,
     borderRadius: 26,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: Colors.borderColor,
     backgroundColor: Colors.placeholderColor
   },
   topContent: {

@@ -4,6 +4,10 @@ import HomeRender from './HomeRender';
 import DetailRender from './DetailRender';
 import MeRender from './MeRender';
 import ReplyListRender from './ReplyListRender';
+import QRScanRender from './QRScanRender';
+import RecentTopicsRender from './RecentTopicsRender';
+import RecentRepliesRender from './RecentRepliesRender';
+
 
 // register all screens of the app (including internal ones)
 export function registerScreens() {
@@ -11,4 +15,7 @@ export function registerScreens() {
   Navigation.registerComponent('Noder.MeRender', () => MeRender);
   Navigation.registerComponent('Noder.DetailRender', () => DetailRender);
   Navigation.registerComponent('Noder.ReplyListRender', () => ReplyListRender);
+  Navigation.registerComponent('Noder.QRScanRender', () => QRScanRender);
+  Navigation.registerComponent('Noder.RecentTopicsRender', () => RecentTopicsRender);
+  Navigation.registerComponent('Noder.RecentRepliesRender', () => RecentRepliesRender);
 }
