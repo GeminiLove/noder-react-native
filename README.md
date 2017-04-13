@@ -21,4 +21,4 @@
 
 部分设计照搬了锤子论坛安卓客户端，项目中包含了设计的源文件，请用 Sketch 43.0 以上版本打开根目录的 Noder 文件。
 
-![image](./iPhone 7.png)
+![image](iPhone 7.png)
