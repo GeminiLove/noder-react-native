@@ -6,6 +6,6 @@ target 'Noder' do
     # Reveal
     pod 'Reveal-SDK', :configurations => ['Debug']
     pod 'HTMLKit'                  #https://github.com/iabudiab/HTMLKit
-    pod 'AsyncDisplayKit'          #https://github.com/facebook/AsyncDisplayKit
+    pod 'Texture'          #https://github.com/TextureGroup/Texture
     pod 'libextobjc'
 end

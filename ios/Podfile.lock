@@ -1,12 +1,5 @@
 PODS:
-  - AsyncDisplayKit (2.2):
-    - AsyncDisplayKit/PINRemoteImage (= 2.2)
-  - AsyncDisplayKit/Core (2.2)
-  - AsyncDisplayKit/PINRemoteImage (2.2):
-    - AsyncDisplayKit/Core
-    - PINRemoteImage/iOS (= 3.0.0-beta.8)
-    - PINRemoteImage/PINCache
-  - HTMLKit (2.0.4)
+  - HTMLKit (2.0.5)
   - libextobjc (0.4.1):
     - libextobjc/EXTADT (= 0.4.1)
     - libextobjc/EXTConcreteProtocol (= 0.4.1)
@@ -50,29 +43,37 @@ PODS:
   - PINCache/Core (3.0.1-beta.4):
     - PINOperation (= 1.0.3)
   - PINOperation (1.0.3)
-  - PINRemoteImage/Core (3.0.0-beta.8)
-  - PINRemoteImage/iOS (3.0.0-beta.8):
+  - PINRemoteImage/Core (3.0.0-beta.9):
+    - PINOperation
+  - PINRemoteImage/iOS (3.0.0-beta.9):
     - PINRemoteImage/Core
-  - PINRemoteImage/PINCache (3.0.0-beta.8):
+  - PINRemoteImage/PINCache (3.0.0-beta.9):
     - PINCache (= 3.0.1-beta.4)
     - PINRemoteImage/Core
   - Reveal-SDK (8)
+  - Texture (2.3):
+    - Texture/PINRemoteImage (= 2.3)
+  - Texture/Core (2.3)
+  - Texture/PINRemoteImage (2.3):
+    - PINRemoteImage/iOS (= 3.0.0-beta.9)
+    - PINRemoteImage/PINCache
+    - Texture/Core
 
 DEPENDENCIES:
-  - AsyncDisplayKit
   - HTMLKit
   - libextobjc
   - Reveal-SDK
+  - Texture
 
 SPEC CHECKSUMS:
-  AsyncDisplayKit: 1585f6cd0531ae9b30476f5912f577b73ebcb0e4
-  HTMLKit: f917133c64270a7f9e82697a9ea8bfb4e69bcc67
+  HTMLKit: 933cfe9a6bdf6a60c3b6f101e4d611b8bf72eaca
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
   PINCache: a89c8f609232afac77128557bd12c861844423d7
   PINOperation: ac23db44796d4a564ecf9b5ea7163510f579b71d
-  PINRemoteImage: c4f9f16932840c597f32e69dd288e10e111a1929
+  PINRemoteImage: e4e02e15a6f96cedbcef2abf1c9c1228dc9897d7
   Reveal-SDK: 43be4e662864e937960d0d04d005135e29c4e53b
+  Texture: de523401d6c296e63249021246a95bf7f90b3d9c
 
-PODFILE CHECKSUM: 2fedeb1495076c6c24d813b072e1e83e560ccd03
+PODFILE CHECKSUM: afaf64d7a2abc45ba7ad6ccb3bf10ff90f3aefbe
 
 COCOAPODS: 1.2.0
