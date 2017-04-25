@@ -36,7 +36,7 @@ export default class MeRender extends Component {
     //   });
     // });
 
-    this._getUserInfo({loginname: "berwin"})
+    this._getUserInfo({loginname: "alsotang"})
   }
   componentWillUnmount(){
     this.listener.remove();
@@ -107,6 +107,20 @@ export default class MeRender extends Component {
       this._loginAction();
     }
   }
+  _topicCollect(){
+    var userInfo = this.state.userInfo;
+    if (userInfo) {
+      this.props.navigator.push({
+        screen: 'Noder.TopicCollectRender',
+        title: '收藏',
+        backButtonTitle: ' ',
+        passProps: {loginname: userInfo.loginname}
+      })
+    }
+    else {
+      this._loginAction();
+    }
+  }
   _headerView(){
     var userInfo = this.state.userInfo;
     if (userInfo) {
@@ -158,13 +172,15 @@ export default class MeRender extends Component {
             <Image source={require('../assets/images/iconDisclosureIndicator.png')}/>
           </View>
         </TouchableHighlight>
-        <View style={styles.cellView}>
-          <View style={Styles.horizontalView}>
-            <Image source={require('../assets/images/iconPlacehold.png')}/>
-            <Text style={styles.cellTtile}>{'我的收藏'}</Text>
+        <TouchableHighlight onPress={() => this._topicCollect()}>
+          <View style={styles.cellView}>
+            <View style={Styles.horizontalView}>
+              <Image source={require('../assets/images/iconPlacehold.png')}/>
+              <Text style={styles.cellTtile}>{'我的收藏'}</Text>
+            </View>
+            <Image source={require('../assets/images/iconDisclosureIndicator.png')}/>
           </View>
-          <Image source={require('../assets/images/iconDisclosureIndicator.png')}/>
-        </View>
+        </TouchableHighlight>
         <View style={styles.bottomView}>
           <Image source={require('../assets/images/iconLogo.png')}/>
           <Text style={styles.versionText}>{'1.0.0'}</Text>

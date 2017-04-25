@@ -6,6 +6,9 @@ export default {
   topicDetail: baseUrl + 'topic/',
   good: baseUrl + 'topics' + '?tab=good',
   share: baseUrl + 'topics' + '?tab=share',
+  ask: baseUrl + 'topics' + '?tab=ask',
+  job: baseUrl + 'topics' + '?tab=job',
   login: baseUrl + 'accesstoken',
-  userInfo: baseUrl + 'user/'
+  userInfo: baseUrl + 'user/',
+  topicCollect: baseUrl + 'topic_collect/'
 };

@@ -7,6 +7,8 @@ import ReplyListRender from './ReplyListRender';
 import QRScanRender from './QRScanRender';
 import RecentTopicsRender from './RecentTopicsRender';
 import RecentRepliesRender from './RecentRepliesRender';
+import TopicCollectRender from './TopicCollectRender';
+
 
 
 // register all screens of the app (including internal ones)
@@ -18,4 +20,5 @@ export function registerScreens() {
   Navigation.registerComponent('Noder.QRScanRender', () => QRScanRender);
   Navigation.registerComponent('Noder.RecentTopicsRender', () => RecentTopicsRender);
   Navigation.registerComponent('Noder.RecentRepliesRender', () => RecentRepliesRender);
+  Navigation.registerComponent('Noder.TopicCollectRender', () => TopicCollectRender);
 }

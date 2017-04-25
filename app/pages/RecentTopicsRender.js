@@ -32,6 +32,7 @@ export default class RecentTopicsRender extends Component {
       dataSource: this.props.data,
     });
   }
+
   render(){
       if (this.state.dataSource.length) {
         return(
@@ -51,17 +52,26 @@ export default class RecentTopicsRender extends Component {
         )
       }
   }
-
+  _rowAction(item){
+    this.props.navigator.push({
+      screen: 'Noder.DetailRender',
+      title: '帖子详情',
+      backButtonTitle: ' ',
+      passProps: {data: item},
+    })
+  }
   renderRow(item, index){
     var row = index + 1;
     return(
-      <View style={styles.cellContent}>
-        <Image source={{uri: item.author.avatar_url}} style={styles.avatar}/>
-        <View style={styles.textContent}>
-          <Text style={styles.title} numberOfLines={1}>{item.title}</Text>
-          <Text style={styles.create}>{this._relative(item)}</Text>
+      <TouchableHighlight style={{flex:1}} onPress={()=>this._rowAction(item)}>
+        <View style={styles.cellContent}>
+          <Image source={{uri: item.author.avatar_url}} style={styles.avatar}/>
+          <View style={styles.textContent}>
+            <Text style={styles.title} numberOfLines={1}>{item.title}</Text>
+            <Text style={styles.create}>{this._relative(item)}</Text>
+          </View>
         </View>
-      </View>
+      </TouchableHighlight>
     )
   }
 
@@ -87,7 +97,8 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    padding: 16
+    padding: 16,
+    backgroundColor: 'white'
   },
   avatar: {
     width: 50,

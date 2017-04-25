@@ -14,7 +14,7 @@ import DetailHeader from '../component/DetailHeader'
 import * as Colors from '../other/Colors'
 import Api from '../util/Api'
 
-var HtmlView = requireNativeComponent('RCTHtmlView', null);
+var LCHtmlView = requireNativeComponent('RCTHtmlView', null);
 
 export default class DetailRender extends Component {
   static navigatorStyle = {
@@ -65,7 +65,7 @@ export default class DetailRender extends Component {
       <View style={styles.container}>
         <ScrollView>
           <DetailHeader data={this.props.data}/>
-          <HtmlView
+          <LCHtmlView
             content={this.state.detail.content}
             onChange={(event) => this._layoutDidFinish(event)}
             style={[styles.content, {height: this.state.htmlHeight}]}

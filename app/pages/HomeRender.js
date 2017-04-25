@@ -33,7 +33,6 @@ export default class HomeRender extends Component {
 
   render() {
     return (
-
      <ScrollableTabView
         style={styles.scrollableTabView}
         tabBarUnderlineStyle={styles.tabBarUnderline}
@@ -44,11 +43,11 @@ export default class HomeRender extends Component {
         <CommonList tabLabel='全部' navigator={this.props.navigator}></CommonList>
         <CommonList tabLabel='精华' navigator={this.props.navigator}></CommonList>
         <CommonList tabLabel='分享' navigator={this.props.navigator}></CommonList>
+        <CommonList tabLabel='问答' navigator={this.props.navigator}></CommonList>
+        <CommonList tabLabel='招聘' navigator={this.props.navigator}></CommonList>
       </ScrollableTabView>
     )
   }
-
-
 }
 
 const styles = {

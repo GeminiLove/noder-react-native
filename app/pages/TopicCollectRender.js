@@ -3,28 +3,60 @@ import {
   Text,
   View,
   Image,
-  StyleSheet,
   FlatList,
+  StyleSheet,
   TouchableHighlight,
   Dimensions
 } from 'react-native';
 
-import Api from '../util/Api'
-import Styles from '../other/Styles'
 import * as Colors from '../other/Colors'
+import Api from '../util/Api'
 import moment from 'moment'
 
 const WindowWidth = Dimensions.get('window').width
 
-export default class CommonList extends Component {
+export default class TopicCollectRender extends Component {
+  static navigatorStyle = {
+    navBarBackgroundColor: 'white',
+    tabBarHidden: true,
+  }
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      dataSource: []
+      dataSource: [],
   	}
   }
-  _relative(item){
-    return moment(item.create_at).fromNow()
+  componentDidMount(){
+    fetch(Api.topicCollect + this.props.loginname)
+      .then((response) => response.json())
+      .then((responseData) => {
+        if (responseData) {
+          this.setState({
+            dataSource: responseData.data,
+          });
+        }
+      })
+    .done();
+  }
+
+  render(){
+      if (this.state.dataSource.length) {
+        return(
+          <FlatList
+            initialListSize={10}
+            data={this.state.dataSource}
+            renderItem={({item, index}) => this.renderRow(item, index)}
+            keyExtractor={item => item.id}
+            ItemSeparatorComponent={() => this.renderSeparator()}
+            style={styles.listView}
+          />
+        )
+      }
+      else {
+        return(
+          <View/>
+        )
+      }
   }
   _rowAction(item){
     this.props.navigator.push({
@@ -34,7 +66,7 @@ export default class CommonList extends Component {
       passProps: {data: item},
     })
   }
-  renderRow(item){
+  renderRow(item, index){
     let markIcon = null;
     if (item.good) {
       markIcon = require('../assets/images/iconStar.png')
@@ -72,54 +104,17 @@ export default class CommonList extends Component {
       </TouchableHighlight>
     )
   }
+
   renderSeparator(){
     return(
       <View style={styles.separator}/>
     )
   }
-  componentDidMount(){
-    let url = Api.topics;
-    if (this.props.tabLabel === '全部') {
-      url = Api.topics
-    }
-    else if (this.props.tabLabel === '精华') {
-      url = Api.good
-    }
-    else if (this.props.tabLabel === '精华') {
-      url = Api.good
-    }
-    else if (this.props.tabLabel === '问答') {
-      url = Api.ask
-    }
-    else if (this.props.tabLabel === '招聘') {
-      url = Api.job
-    }
-    fetch(url)
-      .then((response) => response.json())
-      .then((responseData) => {
-        if (responseData) {
-          this.setState({
-            dataSource: responseData.data,
-          });
-        }
-      })
-    .done();
-  }
-  componentWillReceiveProps(nextProps) {
-
-	}
-  render() {
-    return (
-      <FlatList
-        data={this.state.dataSource}
-        keyExtractor={item => item.id}
-        renderItem={({item}) => this.renderRow(item)}
-        ItemSeparatorComponent={this.renderSeparator.bind(this)}
-        style={styles.listView}
-      />
-    )
+  _relative(item){
+    return moment(item.create_at).fromNow()
   }
 }
+
 
 const styles = {
   listView: {

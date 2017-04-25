@@ -10,7 +10,6 @@ import {
   requireNativeComponent,
 } from 'react-native';
 
-import DetailHeader from '../component/DetailHeader'
 import * as Colors from '../other/Colors'
 import Api from '../util/Api'
 import moment from 'moment'
