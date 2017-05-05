@@ -121,7 +121,7 @@ const styles = {
   },
   htmlView: {
     flex: 1,
-    marginBottom: -40
+    marginBottom: -44
   },
   cellContent: {
     flex: 1,
