@@ -1,6 +1,6 @@
 # noder-react-native
 
-这是一个基于 [react-native](https://github.com/facebook/react-native) d的 [cnodejs](https://cnodejs.org/) 客户端，只支持 iOS 平台，目前还在完善中。
+这是一个基于 [react-native](https://github.com/facebook/react-native) 的 [cnodejs](https://cnodejs.org/) 客户端，只支持 iOS 平台，目前还在完善中。
 
 
 
