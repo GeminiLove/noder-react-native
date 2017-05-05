@@ -39,8 +39,7 @@ export default class MeRender extends Component {
     //     this._getUserInfo(info)
     //   });
     // });
-
-    this._getUserInfo({loginname: "alsotang"})
+    this._getUserInfo({loginname: "bawn"})
   }
   componentWillUnmount(){
     this.listener.remove();

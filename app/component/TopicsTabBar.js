@@ -32,7 +32,7 @@ const TopicsTabBar = React.createClass({
   },
 
   renderTabOption(name, page) {
-    
+
   },
 
   renderTab(name, page, isTabActive, onPressHandler) {

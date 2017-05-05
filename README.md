@@ -10,7 +10,7 @@
 
 ### 技术
 1. [HTMLKit](https://github.com/iabudiab/HTMLKit) ，HTML 的解析
-2. [AsyncDisplayKit](https://github.com/facebook/AsyncDisplayKit) 渲染图文混排的页面（LCHtmlView）
+2. [AsyncDisplayKit](https://github.com/facebook/AsyncDisplayKit) 渲染图文混排的页面（HtmlRender）
 3. [react-native-navigation](https://github.com/wix/react-native-navigation) 用于页面管理和跳转
 4. [react-native-qrcode-scanner](https://github.com/moaazsidat/react-native-qrcode-scanner) 用于扫描二维码
 5. [react-native-htmlview](https://github.com/jsdf/react-native-htmlview) 显示回复内容
