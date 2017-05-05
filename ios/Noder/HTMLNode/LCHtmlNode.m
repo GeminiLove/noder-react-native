@@ -19,7 +19,6 @@
 #import "LCPDisplayNode.h"
 #import "LCCodeDisplayNode.h"
 
-static NSString *kLinkAttributeName = @"PlaceKittenNodeLinkAttributeName";
 
 static CGFloat const kBottomSpaceValue = 20.0f;
 static CGFloat const kTopSpaceValue = 4.0f;
@@ -143,7 +142,7 @@ static CGFloat const kTopSpaceValue = 4.0f;
   }
 }
 
--(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize {
+- (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize {
   ASStackLayoutSpec *layout = [ASStackLayoutSpec verticalStackLayoutSpec];
   layout.justifyContent = ASStackLayoutJustifyContentStart;
   layout.alignItems = ASStackLayoutAlignItemsStretch;
@@ -152,7 +151,17 @@ static CGFloat const kTopSpaceValue = 4.0f;
 }
 
 - (void)textNode:(ASTextNode *)richTextNode tappedLinkAttribute:(NSString *)attribute value:(NSURL *)URL atPoint:(CGPoint)point textRange:(NSRange)textRange{
-  [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:NULL];
+  NSString *urlString = URL.absoluteString;
+  if ([urlString hasPrefix:@"/user/"]) {
+    if (self.clickUserLinkBlock) {
+      self.clickUserLinkBlock(@{
+                                @"loginname" : [URL lastPathComponent],
+                                });
+    }
+  }
+  else{
+    [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:NULL];
+  }
 }
 
 - (BOOL)textNode:(ASTextNode *)richTextNode shouldHighlightLinkAttribute:(NSString *)attribute value:(id)value atPoint:(CGPoint)point{

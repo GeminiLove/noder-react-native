@@ -13,7 +13,7 @@ import Styles from '../other/Styles'
 import RCTDeviceEventEmitter from 'RCTDeviceEventEmitter'
 import Api from '../util/Api'
 
-export default class MeRender extends Component {
+export default class UserProfileRender extends Component {
   static navigatorStyle = {
     navBarBackgroundColor: 'white',
     navBarButtonColor: 'black'
@@ -21,30 +21,13 @@ export default class MeRender extends Component {
   constructor(props){
     super(props);
     this.state = {
-      listener: null,
       userInfo: null
     };
   }
-  _loginAction(){
-    this.props.navigator.showModal({
-      screen: 'Noder.QRScanRender',
-      title: "二维码",
-      passProps: {},
-      animationType: 'slide-up'
-    });
-  }
   componentDidMount(){
-    // this.listener = RCTDeviceEventEmitter.addListener('NoderGetToken', (token)=>{
-    //   this._login(token).then((info) => {
-    //     this._getUserInfo(info)
-    //   });
-    // });
+    this._getUserInfo({loginname: this.props.loginname})
+  }
 
-    this._getUserInfo({loginname: "alsotang"})
-  }
-  componentWillUnmount(){
-    this.listener.remove();
-  }
   // 获取用户信息
   _getUserInfo(info){
     let userName = info.loginname;
@@ -59,29 +42,6 @@ export default class MeRender extends Component {
       })
     .done();
   }
-  // 登录
-  _login(token){
-    let json = {
-      "accesstoken" : token,
-    };
-    return new Promise((resolve, reject) => {
-      fetch(Api.login, {
-        method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(json)
-      })
-        .then((response) => response.json())
-        .then((responseData) => {
-          if (responseData) {
-            resolve(responseData);
-          }
-        })
-      .done();
-    });
-  }
   // 最近发布
   _recentTopics(){
     var userInfo = this.state.userInfo;
@@ -92,9 +52,6 @@ export default class MeRender extends Component {
         backButtonTitle: ' ',
         passProps: {data: userInfo.recent_topics}
       })
-    }
-    else {
-      this._loginAction();
     }
   }
   _recentReplies(){
@@ -107,9 +64,6 @@ export default class MeRender extends Component {
         passProps: {data: userInfo.recent_replies}
       })
     }
-    else {
-      this._loginAction();
-    }
   }
   _topicCollect(){
     var userInfo = this.state.userInfo;
@@ -121,76 +75,66 @@ export default class MeRender extends Component {
         passProps: {loginname: userInfo.loginname}
       })
     }
-    else {
-      this._loginAction();
-    }
   }
   _headerView(){
     var userInfo = this.state.userInfo;
-    if (userInfo) {
-      let subText = userInfo.githubUsername + ' | ' + userInfo.score
-      return(
-        <View style={styles.headerView}>
-          <Image
-            style={styles.avatar}
-            source={{uri: userInfo.avatar_url}}
-          />
-          <View style={styles.headerTextView}>
-            <Text style={styles.loginname}>{userInfo.loginname}</Text>
-            <Text style={styles.subText}>{subText}</Text>
-          </View>
+    let subText = userInfo.githubUsername + ' | ' + userInfo.score
+    return(
+      <View style={styles.headerView}>
+        <Image
+          style={styles.avatar}
+          source={{uri: userInfo.avatar_url}}
+        />
+        <View style={styles.headerTextView}>
+          <Text style={styles.loginname}>{userInfo.loginname}</Text>
+          <Text style={styles.subText}>{subText}</Text>
+        </View>
+      </View>
+    )
+  }
+  render(){
+    if (this.state.userInfo) {
+      return (
+        <View style={styles.container}>
+          {this._headerView()}
+          <View style={styles.separatorView}/>
+          <TouchableHighlight onPress={() => this._recentTopics()}>
+            <View style={styles.cellView}>
+              <View style={Styles.horizontalView}>
+                <Image source={require('../assets/images/iconPlacehold.png')}/>
+                <Text style={styles.cellTtile}>{'最近发布'}</Text>
+              </View>
+              <Image source={require('../assets/images/iconDisclosureIndicator.png')}/>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={() => this._recentReplies()}>
+            <View style={styles.cellView}>
+              <View style={Styles.horizontalView}>
+                <Image source={require('../assets/images/iconPlacehold.png')}/>
+                <Text style={styles.cellTtile}>{'最近回复'}</Text>
+              </View>
+              <Image source={require('../assets/images/iconDisclosureIndicator.png')}/>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={() => this._topicCollect()}>
+            <View style={styles.cellView}>
+              <View style={Styles.horizontalView}>
+                <Image source={require('../assets/images/iconPlacehold.png')}/>
+                <Text style={styles.cellTtile}>{'TA的收藏'}</Text>
+              </View>
+              <Image source={require('../assets/images/iconDisclosureIndicator.png')}/>
+            </View>
+          </TouchableHighlight>
+          {/* <View style={styles.bottomView}>
+            <Image source={require('../assets/images/iconLogo.png')}/>
+            <Text style={styles.versionText}>{'1.0.0'}</Text>
+          </View> */}
         </View>
       )
     }
     else {
-      return(
-        <TouchableHighlight onPress={() => this._loginAction()}>
-          <View style={styles.scanView}>
-            <Text style={styles.scanText}>{'扫码登录'}</Text>
-            <Image source={require('../assets/images/iconDisclosureIndicator.png')}/>
-          </View>
-        </TouchableHighlight>
-      )
+      return <View></View>
     }
-  }
-  render(){
-    return (
-      <View style={styles.container}>
-        {this._headerView()}
-        <View style={styles.separatorView}/>
-        <TouchableHighlight onPress={() => this._recentTopics()}>
-          <View style={styles.cellView}>
-            <View style={Styles.horizontalView}>
-              <Image source={require('../assets/images/iconPlacehold.png')}/>
-              <Text style={styles.cellTtile}>{'最近发布'}</Text>
-            </View>
-            <Image source={require('../assets/images/iconDisclosureIndicator.png')}/>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={() => this._recentReplies()}>
-          <View style={styles.cellView}>
-            <View style={Styles.horizontalView}>
-              <Image source={require('../assets/images/iconPlacehold.png')}/>
-              <Text style={styles.cellTtile}>{'最近回复'}</Text>
-            </View>
-            <Image source={require('../assets/images/iconDisclosureIndicator.png')}/>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={() => this._topicCollect()}>
-          <View style={styles.cellView}>
-            <View style={Styles.horizontalView}>
-              <Image source={require('../assets/images/iconPlacehold.png')}/>
-              <Text style={styles.cellTtile}>{'我的收藏'}</Text>
-            </View>
-            <Image source={require('../assets/images/iconDisclosureIndicator.png')}/>
-          </View>
-        </TouchableHighlight>
-        <View style={styles.bottomView}>
-          <Image source={require('../assets/images/iconLogo.png')}/>
-          <Text style={styles.versionText}>{'1.0.0'}</Text>
-        </View>
-      </View>
-    )
   }
 }
 

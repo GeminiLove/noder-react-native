@@ -8,6 +8,8 @@ import QRScanRender from './QRScanRender';
 import RecentTopicsRender from './RecentTopicsRender';
 import RecentRepliesRender from './RecentRepliesRender';
 import TopicCollectRender from './TopicCollectRender';
+import UserProfileRender from './UserProfileRender';
+
 
 
 
@@ -21,4 +23,5 @@ export function registerScreens() {
   Navigation.registerComponent('Noder.RecentTopicsRender', () => RecentTopicsRender);
   Navigation.registerComponent('Noder.RecentRepliesRender', () => RecentRepliesRender);
   Navigation.registerComponent('Noder.TopicCollectRender', () => TopicCollectRender);
+  Navigation.registerComponent('Noder.UserProfileRender', () => UserProfileRender);
 }

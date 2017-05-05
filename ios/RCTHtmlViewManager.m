@@ -9,6 +9,11 @@
 #import "RCTHtmlViewManager.h"
 #import "RCTHtmlView.h"
 
+#import <React/RCTBridge.h>
+#import <React/RCTUtils.h>
+#import <React/RCTUIManager.h>
+#import <React/UIView+React.h>
+
 @implementation RCTHtmlViewManager
 
 RCT_EXPORT_MODULE()
@@ -20,6 +25,9 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_VIEW_PROPERTY(content, NSString)
 RCT_EXPORT_VIEW_PROPERTY(onChange, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onClickUserLink, RCTDirectEventBlock)
+
+
 
 @end
 

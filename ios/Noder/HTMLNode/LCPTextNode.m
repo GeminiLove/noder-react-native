@@ -8,7 +8,8 @@
 
 #import "LCPTextNode.h"
 
-static NSString *const kLinkAttributeName = @"PlaceKittenNodeLinkAttributeName";
+static NSString *const kLinkAttributeName = @"kLinkAttributeName";
+//static NSString *const kLinkAttributeName = @"kLinkAttributeName";
 
 @implementation LCPTextNode
 

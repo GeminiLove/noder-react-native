@@ -10,7 +10,6 @@ import {
 import {Navigation} from 'react-native-navigation';
 
 export default class Post extends Component {
-
   static navigatorStyle = {
 
   };

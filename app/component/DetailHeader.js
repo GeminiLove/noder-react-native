@@ -50,10 +50,6 @@ export default class DetailHeader extends Component {
 }
 
 const styles = {
-  // container: {
-  //   flex: 1,
-  //   backgroundColor: 'white'
-  // },
   container: {
     height: 74,
     backgroundColor: 'white',
@@ -121,7 +117,8 @@ const styles = {
     color: Colors.blackColor
   },
   eyeImage: {
-    marginRight: 5
+    marginRight: 5,
+    marginTop: 1
   },
   messageImage: {
     marginLeft: 10,

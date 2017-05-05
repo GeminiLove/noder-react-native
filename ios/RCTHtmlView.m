@@ -12,11 +12,21 @@
 #import <HTMLKit.h>
 #import <EXTScope.h>
 
+#import <React/RCTAutoInsetsProtocol.h>
+#import <React/RCTConvert.h>
+#import <React/RCTEventDispatcher.h>
+#import <React/RCTLog.h>
+#import <React/RCTUtils.h>
+#import <React/RCTView.h>
+#import <React/UIView+React.h>
+
 @interface RCTHtmlView ()
 
 @property (nonatomic, strong) LCHtmlNode *htmlNode;
 @property (nonatomic, strong) NSString *content;
-@property (nonatomic, copy) RCTDirectEventBlock onChange;
+
+@property (nonatomic, copy) RCTBubblingEventBlock onChange;
+@property (nonatomic, copy) RCTDirectEventBlock onClickUserLink;
 
 @end
 
@@ -34,12 +44,10 @@
 
 RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
 
-
 - (void)layoutSubviews{
   [super layoutSubviews];
   self.htmlNode.frame = self.bounds;
 }
-
 
 
 - (void)setContent:(NSString *)content{
@@ -54,6 +62,13 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
     if (self.onChange) {
       NSDictionary *event = @{@"height" : @(size.height)};
       self.onChange(event);
+    }
+  };
+  
+  self.htmlNode.clickUserLinkBlock = ^(NSDictionary *dic) {
+    @strongify(self);
+    if (self.onClickUserLink) {
+      self.onClickUserLink(dic);
     }
   };
 }

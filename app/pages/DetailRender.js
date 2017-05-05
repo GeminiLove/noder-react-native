@@ -11,10 +11,9 @@ import {
 } from 'react-native';
 
 import DetailHeader from '../component/DetailHeader'
+import HtmlRender from '../component/HtmlRender'
 import * as Colors from '../other/Colors'
 import Api from '../util/Api'
-
-var LCHtmlView = requireNativeComponent('RCTHtmlView', null);
 
 export default class DetailRender extends Component {
   static navigatorStyle = {
@@ -31,7 +30,6 @@ export default class DetailRender extends Component {
   componentDidMount(){
     this._updateData();
   }
-
   _updateData(){
     fetch(Api.topicDetail + this.props.data.id)
       .then((response) => response.json())
@@ -52,10 +50,18 @@ export default class DetailRender extends Component {
       passProps: {data: this.state.detail.replies}
     })
   }
-  _layoutDidFinish(event){
+  _layoutDidFinish(value){
     this.setState({
-      htmlHeight: event.nativeEvent.height
+      htmlHeight: value.height
     });
+  }
+  _clickUserLink(value){
+    this.props.navigator.push({
+      screen: 'Noder.UserProfileRender',
+      title: '',
+      backButtonTitle: ' ',
+      passProps: {loginname: value.loginname}
+    })
   }
   render(){
     if (this.state.detail == null) {
@@ -64,10 +70,11 @@ export default class DetailRender extends Component {
     return(
       <View style={styles.container}>
         <ScrollView>
-          <DetailHeader data={this.props.data}/>
-          <LCHtmlView
+          <DetailHeader data={this.state.detail}/>
+          <HtmlRender
             content={this.state.detail.content}
-            onChange={(event) => this._layoutDidFinish(event)}
+            onChange={(value) => this._layoutDidFinish(value)}
+            onClickUserLink={this._clickUserLink.bind(this)}
             style={[styles.content, {height: this.state.htmlHeight}]}
           />
         </ScrollView>

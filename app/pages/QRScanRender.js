@@ -3,6 +3,7 @@ import {
   Text,
   View,
   Image,
+  Dimensions
 } from 'react-native';
 
 import QRCodeScanner from 'react-native-qrcode-scanner';
@@ -36,8 +37,8 @@ export default class QRScanRender extends Component {
   }
   componentDidMount(){
 
-    RCTDeviceEventEmitter.emit('NoderGetToken', '');
-    this.props.navigator.dismissModal();
+    // RCTDeviceEventEmitter.emit('NoderGetToken', '');
+    // this.props.navigator.dismissModal();
   }
 
   _topContent(){
@@ -51,7 +52,6 @@ export default class QRScanRender extends Component {
     )
   }
   _onRead(object){
-    // console.log(object);
     var token = object.data;
   }
   render(){
@@ -59,6 +59,7 @@ export default class QRScanRender extends Component {
       <View style={styles.container}>
         <QRCodeScanner
           style={{flex:1}}
+          cameraStyle = {styles.cameraContainer}
           topContent={this._topContent()}
           bottomContent={this._bottomContent()}
           onRead={(object) => this._onRead(object)}
@@ -71,5 +72,8 @@ export default class QRScanRender extends Component {
 const styles = {
   container: {
     flex: 1
+  },
+  cameraContainer: {
+     height: Dimensions.get('window').height,
   },
 }

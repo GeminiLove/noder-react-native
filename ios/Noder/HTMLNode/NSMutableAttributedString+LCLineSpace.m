@@ -12,7 +12,8 @@
 #import "NSMutableAttributedString+LCLineSpace.h"
 #import "UIColor+LCColor.h"
 
-static NSString * const kLinkAttributeName = @"PlaceKittenNodeLinkAttributeName";
+static NSString * const kLinkAttributeName = @"kLinkAttributeName";
+
 static CGFloat const kLineHeight = 5.0f;
 
 

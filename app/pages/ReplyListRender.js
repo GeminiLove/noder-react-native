@@ -8,6 +8,7 @@ import {
   TouchableHighlight,
   TouchableOpacity,
   requireNativeComponent,
+  Linking
 } from 'react-native';
 
 import * as Colors from '../other/Colors'
@@ -45,6 +46,20 @@ export default class DetailRender extends Component {
         )
       }
   }
+  _onLinkPress(url){
+    if (url.startsWith('/user/')) {
+      let loginname = url.substr(url.lastIndexOf('/') + 1);
+      this.props.navigator.push({
+        screen: 'Noder.UserProfileRender',
+        title: '',
+        backButtonTitle: ' ',
+        passProps: {loginname: loginname}
+      })
+    }
+    else {
+      Linking.openURL(url).catch();
+    }
+  }
 
   renderRow(item, index){
     var row = index + 1;
@@ -60,6 +75,7 @@ export default class DetailRender extends Component {
             value={item.content}
             style={styles.htmlView}
             stylesheet={htmlStyles}
+            onLinkPress={(url) => this._onLinkPress(url)}
           />
           <Text style={styles.relativeText}>{this._relative(item)}</Text>
         </View>
@@ -118,7 +134,10 @@ const styles = {
     width: 40,
     height: 40,
     borderRadius: 20,
-    marginRight: 16
+    marginRight: 16,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: Colors.borderColor,
+    backgroundColor: Colors.placeholderColor
   },
   cellOtherView: {
     flex: 1,
